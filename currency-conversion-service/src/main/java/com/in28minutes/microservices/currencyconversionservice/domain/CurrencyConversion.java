@@ -17,7 +17,7 @@ public class CurrencyConversion implements Serializable{
 	}
 	
 	public CurrencyConversion(Long id, String from, String to, BigDecimal conversionMultiple, int port,
-			BigDecimal quantity) {
+			BigDecimal quantity, BigDecimal totalCalculatedAmout) {
 		super();
 		this.id = id;
 		this.from = from;
@@ -25,6 +25,7 @@ public class CurrencyConversion implements Serializable{
 		this.conversionMultiple = conversionMultiple;
 		this.port = port;
 		this.quantity = quantity;
+		this.totalCalculatedAmout = totalCalculatedAmout;
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -38,6 +39,8 @@ public class CurrencyConversion implements Serializable{
 	private BigDecimal conversionMultiple;
 	
 	private int port;
+	
+	private BigDecimal totalCalculatedAmout;
 	
 	private BigDecimal quantity;
 }
