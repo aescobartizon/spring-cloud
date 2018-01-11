@@ -2,6 +2,8 @@ package com.in28minutes.microservices.currencyconversionservice.controller;
 
 import java.math.BigDecimal;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +29,8 @@ public class CurrencyConversionController {
 	@Getter
 	CurrencyExchangeServiceProxy currencyExchangeServiceProxy;
 	
+	private Logger logger = LoggerFactory.getLogger(CurrencyConversionController.class);
+	
 	@GetMapping(value="/currency-exchange/from/{from}/to/{to}/{quantity}")
 	public CurrencyConversion retrieveCurrency(@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity) {
 		
@@ -50,6 +54,8 @@ public class CurrencyConversionController {
 		 */
 		
 		CurrencyConversion response = getCurrencyExchangeServiceProxy().retriveExchangeValue(from, to);
+		
+		logger.info("{}",response);
 
 		return CurrencyConversion.builder().id(response.getId()).from(response.getFrom()).to(response.getTo())
 				.conversionMultiple(response.getConversionMultiple()).quantity(quantity)
