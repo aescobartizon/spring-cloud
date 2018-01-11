@@ -13,11 +13,18 @@ import com.in28minutes.microservices.currencyconversionservice.domain.CurrencyCo
 
 
 /** If thre are two or more instaces of currency-exchange is necessary to use ribbon to resolve the url and port**/
-@FeignClient(name="currency-exchange-service")
+//@FeignClient(name="currency-exchange-service")
+
+
+/**
+ * Confign feign. All calls should to throw the gatway. 
+ *
+ * */
+@FeignClient(name="netflix-zuul-api-gateway-server")
 @RibbonClient(name="currency-exchange-service")
 public interface CurrencyExchangeServiceProxy {
 	
-	@GetMapping(value="/currency-exchange/from/{from}/to/{to}")
+	@GetMapping(value="/currency-exchange-service/currency-exchange/from/{from}/to/{to}")
 	public CurrencyConversion retriveExchangeValue(@PathVariable("from") String from, @PathVariable("to") String to);
 
 }

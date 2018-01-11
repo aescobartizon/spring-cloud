@@ -53,7 +53,7 @@ public class CurrencyConversionController {
 
 		return CurrencyConversion.builder().id(response.getId()).from(response.getFrom()).to(response.getTo())
 				.conversionMultiple(response.getConversionMultiple()).quantity(quantity)
-				.port(Integer.parseInt(getEnvironment().getProperty("local.server.port")))
+				.port(response.getPort())
 				.totalCalculatedAmout(quantity.multiply(response.getConversionMultiple())).build();
 	}
 
